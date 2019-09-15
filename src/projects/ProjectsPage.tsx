@@ -3,15 +3,27 @@ import { MOCK_PROJECTS } from './MockProjects';
 import ProjectList from './ProjectList';
 import { Project } from './Project';
 
-class ProjectsPage extends React.Component {
+interface ProjectsPageState {
+  projects: Project[];
+}
+
+class ProjectsPage extends React.Component<any, ProjectsPageState> {
+  state = {
+    projects: MOCK_PROJECTS
+  };
   saveProject = (project: Project) => {
-    console.log('Saving project: ', project);
+    this.setState((previousState: ProjectsPageState) => {
+      let projects = previousState.projects.map((p: Project) => {
+        return p.id === project.id ? project : p;
+      });
+      return { projects };
+    });
   };
   render() {
     return (
       <Fragment>
         <h1>Projects</h1>
-        <ProjectList onSave={this.saveProject} projects={MOCK_PROJECTS} />
+        <ProjectList onSave={this.saveProject} projects={this.state.projects} />
       </Fragment>
     );
   }
