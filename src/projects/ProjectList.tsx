@@ -7,24 +7,45 @@ interface ProjectListProps {
   projects: Project[];
 }
 
-class ProjectList extends React.Component<ProjectListProps> {
+interface ProjectListState {
+  editingProject: Project | {};
+}
+
+class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
+  state = {
+    editingProject: {}
+  };
   handleEdit = (project: Project) => {
-    console.log(project);
+    // console.log(project);
+    this.setState({ editingProject: project });
   };
 
   render() {
     const { projects } = this.props;
-    const items = projects.map(project => (
-      <div key={project.id} className="cols-sm">
-        <ProjectCard
-          project={project}
-          onEdit={(project: Project) => {
-            this.handleEdit(project);
-          }}
-        />
-        <ProjectForm />
-      </div>
-    ));
+
+    let item: JSX.Element;
+    const items = projects.map((project: Project) => {
+      if (project !== this.state.editingProject) {
+        item = (
+          <div key={project.id} className="cols-sm">
+            <ProjectCard
+              project={project}
+              onEdit={() => {
+                this.handleEdit(project);
+              }}
+            ></ProjectCard>
+          </div>
+        );
+      } else {
+        item = (
+          <div key={project.id} className="cols-sm">
+            <ProjectForm></ProjectForm>
+          </div>
+        );
+      }
+      return item;
+    });
+
     return <div className="row">{items}</div>;
   }
 }
