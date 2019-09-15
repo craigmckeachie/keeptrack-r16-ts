@@ -5,6 +5,7 @@ import ProjectForm from './ProjectForm';
 
 interface ProjectListProps {
   projects: Project[];
+  onSave: (project: Project) => void;
 }
 
 interface ProjectListState {
@@ -16,7 +17,6 @@ class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
     editingProject: {}
   };
   handleEdit = (project: Project) => {
-    // console.log(project);
     this.setState({ editingProject: project });
   };
 
@@ -25,7 +25,7 @@ class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
   };
 
   render() {
-    const { projects } = this.props;
+    const { projects, onSave } = this.props;
 
     let item: JSX.Element;
     const items = projects.map((project: Project) => {
@@ -43,7 +43,10 @@ class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
       } else {
         item = (
           <div key={project.id} className="cols-sm">
-            <ProjectForm onCancel={this.cancelEditing}></ProjectForm>
+            <ProjectForm
+              onSave={onSave}
+              onCancel={this.cancelEditing}
+            ></ProjectForm>
           </div>
         );
       }
