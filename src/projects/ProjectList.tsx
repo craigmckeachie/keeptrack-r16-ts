@@ -20,6 +20,10 @@ class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
     this.setState({ editingProject: project });
   };
 
+  cancelEditing = () => {
+    this.setState({ editingProject: {} });
+  };
+
   render() {
     const { projects } = this.props;
 
@@ -39,7 +43,7 @@ class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
       } else {
         item = (
           <div key={project.id} className="cols-sm">
-            <ProjectForm></ProjectForm>
+            <ProjectForm onCancel={this.cancelEditing}></ProjectForm>
           </div>
         );
       }
