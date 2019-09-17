@@ -1,5 +1,6 @@
 import { Project } from './Project';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface ProjectCardProps {
   project: Project;
@@ -15,10 +16,12 @@ function ProjectCard(props: ProjectCardProps) {
     <div className="card">
       <img src={project.imageUrl} alt={project.name} />
       <section className="section dark">
-        <h5 className="strong">
-          <strong>{project.name}</strong>
-        </h5>
-        <p>{project.description}</p>
+        <Link to={'/projects/' + project.id}>
+          <h5 className="strong">
+            <strong>{project.name}</strong>
+          </h5>
+          <p>{project.description}</p>
+        </Link>
         <p>Budget : {project.budget.toLocaleString()}</p>
         <button
           className="bordered"

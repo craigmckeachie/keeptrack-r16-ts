@@ -8,6 +8,7 @@ import {
   Switch
 } from 'react-router-dom';
 import HomePage from './home/HomePage';
+import ProjectPage from './projects/ProjectPage';
 
 const App: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/projects" exact component={ProjectsPage} />
+          <Route path="/projects/:id" component={ProjectPage} />
         </Switch>
       </div>
     </Router>
