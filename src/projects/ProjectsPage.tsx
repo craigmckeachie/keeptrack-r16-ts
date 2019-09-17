@@ -48,12 +48,26 @@ class ProjectsPage extends React.Component<any, ProjectsPageState> {
   };
 
   saveProject = (project: Project) => {
-    this.setState((previousState: ProjectsPageState) => {
-      let projects = previousState.projects.map((p: Project) => {
-        return p.id === project.id ? project : p;
+    // this.setState((previousState: ProjectsPageState) => {
+    //   let projects = previousState.projects.map((p: Project) => {
+    //     return p.id === project.id ? project : p;
+    //   });
+    //   return { projects };
+    // });
+    
+    projectAPI
+      .put(project)
+      .then(data => {
+        this.setState(state => {
+          let projects = state.projects.map(p => {
+            return p.id === project.id ? project : p;
+          });
+          return { projects };
+        });
+      })
+      .catch(error => {
+        this.setState({ error: error.message });
       });
-      return { projects };
-    });
   };
   render() {
     return (
