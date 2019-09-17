@@ -13,9 +13,9 @@ const App: React.FC = () => {
   return (
     <Router>
       <header className="sticky">
-        <a href="#" className="logo">
+        <span className="logo">
           <img src="/assets/logo-3.svg" alt="logo" width="49" height="99" />
-        </a>
+        </span>
         <NavLink to="/" exact className="button rounded">
           <span className="icon-home"></span>
           Home
