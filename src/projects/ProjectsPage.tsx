@@ -39,7 +39,7 @@ class ProjectsPage extends React.Component<any, ProjectsPageState> {
   }
 
   componentDidMount() {
-    this.loadProjects(this.state.page);
+    this.loadProjects(1);
   }
 
   handleMoreClick = () => {
@@ -54,7 +54,7 @@ class ProjectsPage extends React.Component<any, ProjectsPageState> {
     //   });
     //   return { projects };
     // });
-    
+
     projectAPI
       .put(project)
       .then(data => {
