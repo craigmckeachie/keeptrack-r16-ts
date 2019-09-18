@@ -1,5 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 import { Project } from './Project';
+import { saveProject } from './state/projectActions';
+import { connect } from 'react-redux';
 
 interface ProjectFormProps {
   project: Project;
@@ -54,7 +56,6 @@ class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
       [name]: updatedValue
     };
 
-    
     this.setState((previousState: ProjectFormState) => {
       // Shallow clone using Object.assign while updating changed property
       const project = Object.assign(
@@ -76,10 +77,7 @@ class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
   render() {
     const { onCancel } = this.props;
     return (
-      <form
-        className="input-group vertical"
-        onSubmit={this.handleSubmit}
-      >
+      <form className="input-group vertical" onSubmit={this.handleSubmit}>
         <label htmlFor="name">Project Name</label>
         <input
           type="text"
@@ -145,4 +143,15 @@ class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
   }
 }
 
-export default ProjectForm;
+// export default ProjectForm;
+
+// React Redux (connect)---------------
+
+const mapDispatchToProps = {
+  onSave: saveProject
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ProjectForm);
