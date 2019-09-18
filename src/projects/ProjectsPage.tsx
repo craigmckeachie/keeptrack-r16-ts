@@ -6,21 +6,13 @@ import { ProjectState } from './state/projectTypes';
 import { loadProjects, saveProject } from './state/projectActions';
 import { connect } from 'react-redux';
 
-
 class ProjectsPage extends React.Component<any> {
-  state = {
-    projects: [],
-    loading: false,
-    error: undefined,
-    page: 1
-  };
-
   loadProjects(page: number) {
     this.props.onLoad(page);
   }
 
   componentDidMount() {
-    this.loadProjects(this.props.page);
+    this.loadProjects(1);
   }
 
   handleMoreClick = () => {
