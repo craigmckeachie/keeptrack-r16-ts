@@ -3,7 +3,7 @@ import { Project } from './Project';
 import ProjectCard from './ProjectCard';
 import ProjectForm from './ProjectForm';
 
-interface ProjectListProps {
+export interface ProjectListProps {
   projects: Project[];
   onSave: (project: Project) => void;
 }
