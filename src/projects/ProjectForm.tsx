@@ -92,6 +92,10 @@ class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
             <p>{this.state.errors.name}</p>
           </div>
         )}
+{/* 
+        <div className="card error">
+          <p>{this.state.errors.name}</p>
+        </div> */}
 
         <label htmlFor="description">Project Description</label>
         <textarea
