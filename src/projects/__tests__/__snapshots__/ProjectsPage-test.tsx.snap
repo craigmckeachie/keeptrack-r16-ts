@@ -1,3 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ProjectsPage> snapshot 1`] = `ShallowWrapper {}`;
+exports[`<ProjectsPage> snapshot 1`] = `
+<Fragment>
+  <h1>
+    Projects
+  </h1>
+  <ProjectList
+    onSave={[Function]}
+    projects={
+      Array [
+        Project {
+          "budget": 54637,
+          "contractSignedOn": "2013-08-04T22:39:41.473Z",
+          "contractTypeId": 3,
+          "description": "Fully-configurable intermediate framework. Ullam occaecati libero laudantium nihil voluptas omnis.",
+          "id": 1,
+          "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+          "isActive": false,
+          "name": "Johnson - Kutch",
+        },
+        Project {
+          "budget": 91638,
+          "contractSignedOn": "2012-08-06T21:21:31.419Z",
+          "contractTypeId": 4,
+          "description": "Centralized interactive application. Exercitationem nulla ut ipsam vero quasi enim quos doloribus voluptatibus.",
+          "id": 2,
+          "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+          "isActive": true,
+          "name": "Wisozk Group",
+        },
+        Project {
+          "budget": 29729,
+          "contractSignedOn": "2016-06-26T18:24:01.706Z",
+          "contractTypeId": 6,
+          "description": "Re-contextualized dynamic moratorium. Aut nulla soluta numquam qui dolor architecto et facere dolores.",
+          "id": 3,
+          "imageUrl": "/assets/placeimg_500_300_arch12.jpg",
+          "isActive": true,
+          "name": "Denesik LLC",
+        },
+        Project {
+          "budget": 45660,
+          "contractSignedOn": "2013-05-26T01:10:42.344Z",
+          "contractTypeId": 4,
+          "description": "Innovative 6th generation model. Perferendis libero qui iusto et ullam cum sint molestias vel.",
+          "id": 4,
+          "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+          "isActive": true,
+          "name": "Purdy, Keeling and Smitham",
+        },
+        Project {
+          "budget": 81188,
+          "contractSignedOn": "2009-12-18T21:46:47.944Z",
+          "contractTypeId": 2,
+          "description": "Managed logistical migration. Qui quod praesentium accusamus eos hic non error modi et.",
+          "id": 5,
+          "imageUrl": "/assets/placeimg_500_300_arch12.jpg",
+          "isActive": true,
+          "name": "Kreiger - Waelchi",
+        },
+        Project {
+          "budget": 53407,
+          "contractSignedOn": "2016-09-23T21:27:25.035Z",
+          "contractTypeId": 3,
+          "description": "Profound mobile project. Rem consequatur laborum explicabo sint odit et illo voluptas expedita.",
+          "id": 6,
+          "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+          "isActive": false,
+          "name": "Lesch - Waelchi",
+        },
+      ]
+    }
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-12"
+    >
+      <div
+        className="button-group fluid"
+      >
+        <button
+          className="button default"
+          onClick={[Function]}
+        >
+          More...
+        </button>
+      </div>
+    </div>
+  </div>
+</Fragment>
+`;

@@ -144,6 +144,7 @@ class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
 }
 
 // export default ProjectForm;
+export { ProjectForm as UnconnectedProjectForm };
 
 // React Redux (connect)---------------
 
