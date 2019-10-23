@@ -6,6 +6,7 @@ import { Project } from '../Project';
 describe('<ProjectForm />', () => {
   let wrapper: ShallowWrapper;
   let project: Project;
+  let updatedProject: Project;
   let handleSave: jest.Mock;
   let handleCancel: jest.Mock;
   let nameWrapper: ShallowWrapper<HTMLAttributes>;
@@ -17,6 +18,11 @@ describe('<ProjectForm />', () => {
       name: 'Mission Impossible',
       description: 'This is really difficult',
       budget: 100
+    });
+    updatedProject = new Project({
+      name: 'Ghost Protocol',
+      description:
+        'Blamed for a terrorist attack on the Kremlin, Ethan Hunt (Tom Cruise) and the entire IMF agency...'
     });
     handleSave = jest.fn();
     handleCancel = jest.fn();
@@ -31,12 +37,6 @@ describe('<ProjectForm />', () => {
     descriptionWrapper = wrapper.find('textarea[name="description"]');
   });
 
-  const changeValue = (inputWrapper, newValue) => {
-    inputWrapper.simulate('change', {
-      target: { ...inputWrapper.props(), value: newValue }
-    });
-  };
-
   test('renders without crashing', () => {
     expect(wrapper).toBeDefined();
   });
@@ -46,29 +46,30 @@ describe('<ProjectForm />', () => {
     expect(descriptionWrapper.props().value).toEqual(project.description);
   });
 
-  test('should allow users to update form ', () => {
-    const updatedProject = new Project({
-      name: 'Ghost Protocol',
-      description:
-        'Blamed for a terrorist attack on the Kremlin, Ethan Hunt (Tom Cruise) and the entire IMF agency...'
-    });
-
+  test('should allow users to update name ', () => {
     nameWrapper.simulate('change', {
-      target: { type: 'text', name: 'name', value: 'updated project' }
+      target: { type: 'text', name: 'name', value: updatedProject.name }
     });
 
     const updatedNameWrapper = wrapper.find('input[name="name"]');
-    console.log(updatedNameWrapper.debug());
-    expect(updatedNameWrapper.props().value).toBe('updated project');
-    
-    // expect(wrapper.state('project').name).toEqual('updated project');
-    // changeValue(descriptionWrapper, updatedProject.description);
+    expect(updatedNameWrapper.props().value).toBe(updatedProject.name);
+  });
 
-    // descriptionWrapper = wrapper.find('textarea[name="description"]');
+  test('should allow users to update description ', () => {
+    descriptionWrapper.simulate('change', {
+      target: {
+        type: 'textarea',
+        name: 'description',
+        value: updatedProject.description
+      }
+    });
 
-    // expect(descriptionWrapper.props().value).toEqual(
-    //   updatedProject.description
-    // );
+    const updatedDescriptionWrapper = wrapper.find(
+      'textarea[name="description"]'
+    );
+    expect(updatedDescriptionWrapper.props().value).toBe(
+      updatedProject.description
+    );
   });
 
   test('should call onSave when submitted ', () => {
@@ -77,13 +78,39 @@ describe('<ProjectForm />', () => {
     expect(handleSave).toHaveBeenCalledWith(project);
   });
 
-  // test('should display required validation message if name not provided', () => {
-  //   changeValue(nameWrapper, 'fdkk');
-  //   expect(nameWrapper.props().value).toEqual('fdkk');
-  //   const nameRequiredWrapper = wrapper.find('div.card.error');
-  //   // debugger;
-  //   // console.log(nameRequiredWrapper);
-  //   // //console.log(nameRequiredWrapper.html());
-  //   // expect(nameRequiredWrapper).toBeDefined();
-  // });
+  test('should display required validation message if name not provided', () => {
+    nameWrapper.simulate('change', {
+      target: { type: 'text', name: 'name', value: '' }
+    });
+
+    const validationErrorWrapper = wrapper.find('div.card.error');
+    expect(validationErrorWrapper.length).toBe(1);
+  });
+
+  test('should not display required validation message if name is provided', () => {
+    nameWrapper.simulate('change', {
+      target: { type: 'text', name: 'name', value: 'abc' }
+    });
+
+    const validationErrorWrapper = wrapper.find('div.card.error');
+    expect(validationErrorWrapper.length).toBe(0);
+  });
+
+  test('should display minlength validation message if name is too short', () => {
+    nameWrapper.simulate('change', {
+      target: { type: 'text', name: 'name', value: 'ab' }
+    });
+
+    const validationErrorWrapper = wrapper.find('div.card.error');
+    expect(validationErrorWrapper.length).toBe(1);
+  });
+
+  test('should not display minlength validation message if name is long enough', () => {
+    nameWrapper.simulate('change', {
+      target: { type: 'text', name: 'name', value: 'abc' }
+    });
+
+    const validationErrorWrapper = wrapper.find('div.card.error');
+    expect(validationErrorWrapper.length).toBe(0);
+  });
 });
