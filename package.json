@@ -48,6 +48,12 @@
   "devDependencies": {
     "@types/enzyme": "~3.10.3",
     "@types/react-redux": "~7.1.2",
-    "@types/react-test-renderer": "~16.9.1"
+    "@types/react-test-renderer": "~16.9.1",
+    "enzyme-to-json": "~3.4.3"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
