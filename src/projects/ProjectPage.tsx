@@ -11,8 +11,8 @@ interface ProjectPageState {
 
 const ProjectPage: React.FC<ProjectPageState> = (props: any) => {
   const [loading, setLoading] = useState(false);
-  const [project, setProject] = useState(null);
-  const [error, setError] = useState(null);
+  const [project, setProject] = useState(undefined);
+  const [error, setError] = useState(undefined);
   const id = Number(props.match.params.id);
   useEffect(() => {
     setLoading(true);
