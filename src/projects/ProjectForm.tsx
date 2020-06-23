@@ -59,12 +59,12 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
       [name]: updatedValue,
     };
 
-    // Shallow clone using Object.assign while updating changed property
-    const updatedProject = Object.assign(new Project(), project, change);
-    const updatedErrors = validate(updatedProject);
-
-    setProject(updatedProject);
-    setErrors(updatedErrors);
+    let updatedProject: Project;
+    setProject((p) => {
+      updatedProject = Object.assign(new Project(), p, change);
+      return updatedProject;
+    });
+    setErrors(() => validate(updatedProject));
   };
 
   const handleSubmit = (event: SyntheticEvent) => {
