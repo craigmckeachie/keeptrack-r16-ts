@@ -3,7 +3,7 @@ import ProjectList from './ProjectList';
 import { Project } from './Project';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../state';
-import { loadProjects } from './state/projectActions';
+import { loadProjects, saveProject } from './state/projectActions';
 
 function ProjectsPage() {
   const loading = useSelector(
@@ -28,7 +28,7 @@ function ProjectsPage() {
     dispatch(loadProjects(currentPage + 1));
   };
 
-  const saveProject = (project: Project) => {
+  const handleSave = (project: Project) => {
     dispatch(saveProject(project));
   };
 
@@ -47,7 +47,7 @@ function ProjectsPage() {
           </div>
         </div>
       )}
-      <ProjectList onSave={saveProject} projects={projects} />
+      <ProjectList onSave={handleSave} projects={projects} />
 
       {!loading && !error && (
         <div className="row">
