@@ -5,7 +5,6 @@ import ProjectForm from './ProjectForm';
 
 interface ProjectListProps {
   projects: Project[];
-  onSave: (project: Project) => void;
 }
 
 interface ProjectListState {
@@ -14,7 +13,7 @@ interface ProjectListState {
 
 class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
   state = {
-    editingProject: {}
+    editingProject: {},
   };
   handleEdit = (project: Project) => {
     this.setState({ editingProject: project });

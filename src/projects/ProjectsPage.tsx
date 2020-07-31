@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect } from 'react';
 import ProjectList from './ProjectList';
-import { Project } from './Project';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../state';
-import { loadProjects, saveProject } from './state/projectActions';
+import { loadProjects } from './state/projectActions';
 
 function ProjectsPage() {
   const loading = useSelector(
@@ -28,9 +27,6 @@ function ProjectsPage() {
     dispatch(loadProjects(currentPage + 1));
   };
 
-  const handleSave = (project: Project) => {
-    dispatch(saveProject(project));
-  };
 
   return (
     <Fragment>
@@ -47,7 +43,7 @@ function ProjectsPage() {
           </div>
         </div>
       )}
-      <ProjectList onSave={handleSave} projects={projects} />
+      <ProjectList projects={projects} />
 
       {!loading && !error && (
         <div className="row">
